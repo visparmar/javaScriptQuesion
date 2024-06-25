@@ -1,1 +1,47 @@
 <!--when we click on the window then a circle is generated with random radius and when we again click then another circle is created but in 3rd time both circle is removed . circle having border only  -->
+
+
+<!--  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>  
+    <script>
+        var counter=1;
+        let circles=[];
+       document.addEventListener("click",(e)=>{
+    if(counter==3){
+    console.log("click")
+    let size=circles.length;
+    console.log(circles.length,"circles.length")
+    for(let i=1;i<=size;i++){
+        console.log(i);
+        const temp= circles.pop();
+        document.body.removeChild(temp);
+    }
+   counter=1; 
+   return;
+   }
+    counter++;
+    let a=e.clientX;
+    let b=e.clientY;
+    console.log(a,b)
+    let RandomRadius=Math.floor((Math.random()*100) <=10?10:Math.floor(Math.random()*100));
+    const circle=document.createElement('div');
+    circle.style.width=`${RandomRadius*2}px`;
+    circle.style.height=`${RandomRadius*2}px`;
+    circle.style.position='absolute';
+    circle.style.top = `${a}px`;
+    circle.style.left = `${b}px`;
+    circle.style.border='1px solid red'
+    circle.style.borderRadius='50%';
+    document.body.appendChild(circle);
+circles.push(circle);
+})
+    </script>
+</body>
+</html>
